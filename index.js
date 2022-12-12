@@ -1,26 +1,30 @@
-const express = require('express');
-const cors = require('cors');
-const connection  = require('./config');
-const crudRouter = require('./routes/crud.route');
-
+const express= require('express');
+const cors= require('cors');
+const connection= require('./config.js');
+const crudRouter = require('./routes/Crud.routes.js');
 require('dotenv').config();
 
-const app = express();
-app.use(express.json());
+const app= express();
 app.use(cors());
+app.use(express.json());
+
+
+app.get('/',(req,res)=>{
+    res.send('WELCOME TO CRUD OPERATION WORLD');
+})
 
 app.use('/crud',crudRouter);
 
-const PORT = process.env.PORT || 8080
 
+
+
+const PORT= process.env.PORT|| 8080;
 app.listen(PORT,async()=>{
     try{
-        await connection
-        console.log('connected to db');
-
+        await connection;
+        console.log('db connected');
+    }catch(er){
+        console.log('chk config',er);
     }
-    catch(err){
-        console.log('db',err);
-    }
-    console.log(`Listening on ${PORT}`);
+    console.log(`listening on port ${PORT}`)
 })

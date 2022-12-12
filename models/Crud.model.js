@@ -1,13 +1,15 @@
-const mongoose = require('mongoose');
-require('dotenv').config();
+const mongoose= require('mongoose');
 
-const crudSchema = mongoose.Schema({
+
+const crudSchema= new mongoose.Schema({
     name:{type:String,required:true},
-    age:{type:Number,required:true},
-    course:{type:String,required:true},
-    collage:{type:String,required:true},
+    age:{type:String,required:true},
+    city:{type:String,required:false},
+    state:{type:String,required:false}
 })
 
-const crudModel = mongoose.model('crud11',crudSchema);
 
-module.exports = crudModel;
+const crudModel= mongoose.model('crud',crudSchema);
+
+
+module.exports=crudModel;
